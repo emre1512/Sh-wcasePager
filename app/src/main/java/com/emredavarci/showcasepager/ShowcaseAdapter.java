@@ -34,8 +34,8 @@ public class ShowcaseAdapter extends PagerAdapter {
 
         if(position != 0){
             view.setAlpha(0.1f);
-           // view.setScaleX(0.8f);
-           // view.setScaleY(0.8f);
+            view.setScaleX(0.8f);
+            view.setScaleY(0.8f);
         }
 
 //        for (int i = 1; i < getCount(); i++){

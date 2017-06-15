@@ -7,6 +7,7 @@ import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.AbsListView;
 
@@ -27,29 +28,21 @@ public class MainActivity extends AppCompatActivity {
         final ViewPager vpShowcase = (ViewPager) findViewById(R.id.vpShowcase);
         vpShowcase.setPadding(110, 0, 110, 0);
         vpShowcase.setClipToPadding(false);
-        vpShowcase.setPageMargin(-10);
+        vpShowcase.setPageMargin(0);
 
         int[] images = {R.drawable.one, R.drawable.two, R.drawable.three};
 
         vpShowcase.setAdapter(new ShowcaseAdapter(MainActivity.this, images));
         vpShowcase.setPageTransformer(false, new ViewPager.PageTransformer() {
-            float scale;
+            float scale = 1;
             private static final float MIN_SCALE_DEPTH = 0.8f;
             float translationX;
 
             @Override
             public void transformPage(View page, float position) {
-                if (position > -3 && position < 3) {
-                    scale = MIN_SCALE_DEPTH + (1 - MIN_SCALE_DEPTH) * (1 - Math.abs(position));
-                } else {
-                    scale = 1;
-                }
 
-//                if (position >= -1 && position <= 1) {
-//                    scale = Math.max(MIN_SCALE_ZOOM, 1 - Math.abs(position));
-//                } else {
-//                    scale = 1;
-//                }
+                Log.d("TAGG",String.valueOf(position));
+
 
                 page.setScaleX(scale);
                 page.setScaleY(scale);
