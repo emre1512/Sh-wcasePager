@@ -1,5 +1,6 @@
 package com.emredavarci.showcasepager;
 
+import android.net.VpnService;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -36,13 +37,18 @@ public class MainActivity extends AppCompatActivity {
         vpShowcase.setPageTransformer(false, new ViewPager.PageTransformer() {
             float scale = 1;
             private static final float MIN_SCALE_DEPTH = 0.8f;
-            float translationX;
 
             @Override
             public void transformPage(View page, float position) {
 
-                Log.d("TAGG",String.valueOf(position));
+                // This calculation can be done only once
+                float x = page.getX()/page.getWidth();
+                x = (x - (int)(x));
+                //Log.d("TAGG",String.valueOf(x));
 
+                float p = Math.abs(position-x);
+                if (p > 1) p = 1;
+                scale = MIN_SCALE_DEPTH + (1 - MIN_SCALE_DEPTH) * (1-p);
 
                 page.setScaleX(scale);
                 page.setScaleY(scale);
@@ -54,21 +60,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-//                View cur = (View) vpShowcase.findViewWithTag("view" + position);
-//                cur.setAlpha(cur.getAlpha() - positionOffset);
-
                 if(position < vpShowcase.getAdapter().getCount() - 1){
                     View next = (View) vpShowcase.findViewWithTag("view" + String.valueOf(position+1));
                     next.setAlpha(0.1f + positionOffset);
-//                    next.setScaleX(0.8f + positionOffset);
-//                    next.setScaleY(0.8f + positionOffset);
                     View prev = (View) vpShowcase.findViewWithTag("view" + String.valueOf(position));
                     prev.setAlpha(1.1f - positionOffset);
-//                    prev.setScaleX(1.2f - positionOffset);
-//                    prev.setScaleY(1.2f - positionOffset);
                 }
-
-
             }
 
             @Override
