@@ -4,7 +4,7 @@ This is just a fun project to show an example for a "showcase like" pager. Can b
 
 ## Screenshots
 
-<img src="https://github.com/emre1512/ShowcasePager/tree/master/img/ss.gif" width="20%">
+<img src="https://media.giphy.com/media/26FmRizsqmMNdpzY4/giphy.gif" width="20%">
 
 
 
