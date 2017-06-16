@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="#ffffff">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/mybackground"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:text="Men's Blue Jacket"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="14dp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    </android.support.v7.widget.Toolbar>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vpShowcase"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginTop="50dp"
-/>
+        android:layout_height="320dp"
+        android:layout_marginTop="65dp" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/vpShowcase"
+        android:layout_marginTop="10dp"
+        android:background="#f497b6"
+        android:text="Add to bag"
+        android:textColor="#ffffff"/>
 
 </RelativeLayout>

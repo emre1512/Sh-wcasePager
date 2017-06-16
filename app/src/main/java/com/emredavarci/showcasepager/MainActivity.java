@@ -1,12 +1,15 @@
 package com.emredavarci.showcasepager;
 
+import android.graphics.drawable.Drawable;
 import android.net.VpnService;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
@@ -25,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 
         final ViewPager vpShowcase = (ViewPager) findViewById(R.id.vpShowcase);
         vpShowcase.setPadding(110, 0, 110, 0);
         vpShowcase.setClipToPadding(false);
-        vpShowcase.setPageMargin(0);
+        //vpShowcase.setPageMargin(-30);
 
         int[] images = {R.drawable.one, R.drawable.two, R.drawable.three};
 
@@ -44,11 +49,16 @@ public class MainActivity extends AppCompatActivity {
                 // This calculation can be done only once
                 float x = page.getX()/page.getWidth();
                 x = (x - (int)(x));
-                //Log.d("TAGG",String.valueOf(x));
+                Log.d("TAGG",String.valueOf(x));
 
                 float p = Math.abs(position-x);
                 if (p > 1) p = 1;
                 scale = MIN_SCALE_DEPTH + (1 - MIN_SCALE_DEPTH) * (1-p);
+
+//                float translateValue = position * page.getWidth();
+//                if (translateValue > page.getWidth()*0.5f) {
+//                    page.setTranslationX(translateValue);
+//                }
 
                 page.setScaleX(scale);
                 page.setScaleY(scale);
@@ -62,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if(position < vpShowcase.getAdapter().getCount() - 1){
                     View next = (View) vpShowcase.findViewWithTag("view" + String.valueOf(position+1));
-                    next.setAlpha(0.1f + positionOffset);
+                    next.setAlpha(0.2f + positionOffset);
                     View prev = (View) vpShowcase.findViewWithTag("view" + String.valueOf(position));
-                    prev.setAlpha(1.1f - positionOffset);
+                    prev.setAlpha(1.2f - positionOffset);
                 }
             }
 
